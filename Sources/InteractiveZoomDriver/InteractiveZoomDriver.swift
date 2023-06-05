@@ -87,6 +87,8 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
             frontWindow = UIWindow(windowScene: windowScene)
             frontWindow?.frame = UIScreen.main.bounds
             frontWindow?.windowLevel = UIWindow.Level.statusBar + 1
+          } else {
+            frontWindow = UIWindow(frame: UIScreen.main.bounds)
           }
         } else {
           frontWindow = UIWindow(frame: UIScreen.main.bounds)

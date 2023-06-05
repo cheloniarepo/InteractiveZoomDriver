@@ -78,7 +78,15 @@ public class InteractiveZoomDriver<T: UIView> : NSObject, UIGestureRecognizerDel
       }
       
       if frontWindow == nil {
-        frontWindow = UIWindow(frame: UIScreen.main.bounds)
+        let windowScene = UIApplication.shared
+                .connectedScenes
+                .filter { $0.activationState == .foregroundActive }
+                .first
+        if let windowScene = windowScene as? UIWindowScene {
+          frontWindow = UIWindow(windowScene: windowScene)
+          frontWindow?.frame = UIScreen.main.bounds
+          frontWindow?.windowLevel = UIWindow.Level.statusBar + 1
+        }
       }
       
       targetView.transform = .identity
